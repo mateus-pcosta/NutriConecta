@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header('Lista de Doações')}"></head>
+
+<body>
+
+<!-- MENU -->
+<div th:replace="~{fragments/menu :: body}"></div>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Doações Disponíveis</h2>
+
+    <a href="/doacoes/nova" class="btn btn-primary mb-3">Nova Doação</a>
+
+    <table class="table table-bordered table-striped align-middle">
+        <thead class="table-success">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Doador</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="d : ${doacoes}">
+            <td th:text="${d.id}"></td>
+            <td th:text="${d.titulo}"></td>
+            <td th:text="${d.doador.nome}"></td>
+
+            <td>
+                <span class="badge"
+                      th:classappend="${
+                            d.status.name() == 'ABERTA'    ? 'bg-success' :
+                            d.status.name() == 'RESERVADA' ? 'bg-warning text-dark' :
+                            d.status.name() == 'CONCLUIDA' ? 'bg-primary' :
+                            d.status.name() == 'CANCELADA' ? 'bg-danger' :
+                                                             'bg-secondary'
+                      }"
+                      th:text="${d.status.descricao}">
+                </span>
+            </td>
+
+            <td class="d-flex gap-2">
+
+                <!-- Botão Detalhes -->
+                <a th:href="@{'/doacoes/detalhes/' + ${d.id}}" class="btn btn-info btn-sm">
+                    Detalhes
+                </a>
+
+                <!-- Botão Alterar Status -->
+                <button class="btn btn-warning btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#modalStatus"
+                        th:attr="data-id=${d.id}, data-status=${d.status.name()}">
+                    Alterar Status
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- MODAL ALTERAR STATUS -->
+<div class="modal fade" id="modalStatus" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form method="post" th:action="@{/doacoes/alterar-status}">
+                <div class="modal-header">
+                    <h5 class="modal-title">Alterar Status da Doação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <input type="hidden" id="idDoacao" name="id">
+
+                    <label class="form-label">Novo Status</label>
+                    <select class="form-select" id="statusDoacao" name="status">
+                        <option value="ABERTA">Aberta</option>
+                        <option value="RESERVADA">Reservada</option>
+                        <option value="CONCLUIDA">Concluída</option>
+                        <option value="CANCELADA">Cancelada</option>
+                    </select>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER DEVE VIR ANTES DOS SCRIPTS -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<!-- Bootstrap JS (necessário para o modal funcionar) -->
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+<!-- JS EXTERNO -->
+<script th:src="@{/js/doacoes-status.js}"></script>
+
+</body>
+</html>

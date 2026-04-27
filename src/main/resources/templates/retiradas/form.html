@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header('Registrar Retirada')}"></head>
+
+<body>
+
+<!-- MENU -->
+<div th:replace="~{fragments/menu :: body}"></div>
+
+<h2 class="mb-4">Registrar Retirada</h2>
+
+<form th:action="@{/retiradas/salvar}" th:object="${retirada}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{solicitacao.id}">
+
+    <div class="mb-3">
+        <label class="form-label">Responsável</label>
+        <input type="text" class="form-control" th:field="*{responsavel}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Data da Retirada</label>
+        <input type="datetime-local" class="form-control" th:field="*{dataRetirada}" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Observações</label>
+        <textarea class="form-control" th:field="*{observacoes}"></textarea>
+    </div>
+
+    <button class="btn btn-success">Registrar</button>
+    <a href="/solicitacoes/listar" class="btn btn-secondary">Cancelar</a>
+
+</form>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

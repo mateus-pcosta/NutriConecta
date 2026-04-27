@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/header :: header('Solicitações')}"></head>
+
+<body>
+
+<!-- MENU -->
+<div th:replace="~{fragments/menu :: body}"></div>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Solicitações</h2>
+
+    <table class="table table-striped align-middle">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Doação</th>
+            <th>Instituição</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="s : ${solicitacoes}">
+            <td th:text="${s.id}"></td>
+            <td th:text="${s.doacao.titulo}"></td>
+            <td th:text="${s.instituicao.nome}"></td>
+
+            <!-- Badge de status -->
+            <td>
+                <span class="badge"
+                      th:classappend="${s.status.name() == 'PENDENTE'} ? 'bg-warning text-dark' :
+                                      ${s.status.name() == 'APROVADA'} ? 'bg-success' :
+                                      ${s.status.name() == 'REJEITADA'} ? 'bg-danger' :
+                                      'bg-secondary'"
+                      th:text="${s.status.descricao}">
+                </span>
+            </td>
+
+            <td>
+                <a th:href="@{'/solicitacoes/status/' + ${s.id} + '/APROVADA'}"
+                   class="btn btn-success btn-sm me-1">
+                    Aprovar
+                </a>
+
+                <a th:href="@{'/solicitacoes/status/' + ${s.id} + '/REJEITADA'}"
+                   class="btn btn-danger btn-sm">
+                    Rejeitar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>
