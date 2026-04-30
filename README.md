@@ -78,10 +78,16 @@ DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
 
-### 4. Exporte as variáveis e rode a aplicação
+### 3. Rode a aplicação
 
+**Linux/Mac:**
 ```bash
 export $(cat .env | xargs) && ./mvnw spring-boot:run
+```
+
+**Windows (PowerShell):**
+```powershell
+Get-Content .env | ForEach-Object { if ($_ -match '^([^=]+)=(.+)$') { Set-Item "env:$($matches[1])" $matches[2] } }; .\mvnw.cmd spring-boot:run
 ```
 
 A aplicação estará disponível em **http://localhost:8080**
