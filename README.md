@@ -62,15 +62,7 @@ git clone https://github.com/mateus-pcosta/NutriConecta.git
 cd NutriConecta
 ```
 
-### 2. Configure o banco de dados
-
-Crie o banco no MySQL:
-
-```sql
-CREATE DATABASE dbnutriconecta;
-```
-
-### 3. Configure as variáveis de ambiente
+### 2. Configure as variáveis de ambiente
 
 Copie o arquivo de exemplo e preencha com suas credenciais:
 
