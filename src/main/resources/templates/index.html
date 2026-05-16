@@ -45,39 +45,6 @@
 
 </div>
 
-<!-- ESTATÍSTICAS -->
-<div class="container mt-5">
-    <div class="row g-4 text-center">
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm py-4">
-                <div class="card-body">
-                    <i class="bi bi-gift fs-1 text-success"></i>
-                    <h2 class="fw-bold mt-2" th:text="${estatisticas.totalDoacoes}">0</h2>
-                    <p class="text-muted mb-0">Doações cadastradas</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm py-4">
-                <div class="card-body">
-                    <i class="bi bi-building fs-1 text-success"></i>
-                    <h2 class="fw-bold mt-2" th:text="${estatisticas.totalInstituicoes}">0</h2>
-                    <p class="text-muted mb-0">Instituições atendidas</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm py-4">
-                <div class="card-body">
-                    <i class="bi bi-box-seam fs-1 text-success"></i>
-                    <h2 class="fw-bold mt-2" th:text="${estatisticas.totalAlimentos} + ' kg'">0 kg</h2>
-                    <p class="text-muted mb-0">Alimentos distribuídos</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- DOAÇÕES -->
 <div th:replace="~{fragments/doacoes :: secao-doacoes}"></div>
 
