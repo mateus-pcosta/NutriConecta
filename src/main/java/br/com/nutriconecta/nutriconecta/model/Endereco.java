@@ -35,8 +35,7 @@ public class Endereco {
     // CEP
     private String cep;
 
-    // Relacionamento 1-para-1 com Usuario
-    @OneToOne
-    @JoinColumn(name = "id_usuario") // Chave estrangeira para a tabela de usuários
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 }
