@@ -25,6 +25,7 @@ public class HomeController {
         );
 
         model.addAttribute("estatisticas", estatisticas);
+        model.addAttribute("doacoes", doacaoService.listarTodas());
 
         return "index";
     }

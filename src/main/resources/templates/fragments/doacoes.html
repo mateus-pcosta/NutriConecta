@@ -1,0 +1,44 @@
+<section th:fragment="secao-doacoes" class="container mt-5 mb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Doações Disponíveis</h2>
+        <a href="/doacoes/listar" class="btn btn-outline-success btn-sm">Ver todas</a>
+    </div>
+
+    <div class="row g-4" th:if="${not #lists.isEmpty(doacoes)}">
+        <div class="col-md-4" th:each="d, iter : ${doacoes}" th:if="${iter.index < 6}">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <span class="badge bg-success mb-2" th:text="${d.status}"></span>
+                    <h5 class="card-title" th:text="${d.titulo}"></h5>
+                    <p class="card-text text-muted small" th:text="${d.descricao}"></p>
+                    <ul class="list-unstyled small text-muted mt-2">
+                        <li>
+                            <i class="bi bi-person"></i>
+                            <span th:text="${d.doador != null ? d.doador.nome : 'Não informado'}"></span>
+                        </li>
+                        <li>
+                            <i class="bi bi-box-seam"></i>
+                            <span th:text="${d.quantidade} + ' kg'"></span>
+                        </li>
+                        <li th:if="${d.dataExpiracao != null}">
+                            <i class="bi bi-calendar"></i>
+                            Válido até <span th:text="${#temporals.format(d.dataExpiracao, 'dd/MM/yyyy')}"></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-white border-0 pb-3">
+                    <a th:href="@{'/doacoes/detalhes/' + ${d.id}}" class="btn btn-success btn-sm w-100">
+                        Ver Detalhes
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(doacoes)}" class="text-center text-muted py-5">
+        <i class="bi bi-inbox fs-1"></i>
+        <p class="mt-2">Nenhuma doação disponível no momento.</p>
+    </div>
+
+</section>
