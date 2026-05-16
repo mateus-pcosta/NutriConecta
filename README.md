@@ -131,9 +131,4 @@ src/
 | `DB_USERNAME` | Usuário do banco de dados        |
 | `DB_PASSWORD` | Senha do banco de dados          |
 
-## Contato
 
-[![GitHub](https://img.shields.io/badge/GitHub-mateus--pcosta-181717?logo=github)](https://github.com/mateus-pcosta)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-mateuspessoacosta-0A66C2?logo=linkedin)](https://www.linkedin.com/in/mateuspessoacosta/)
-[![Instagram](https://img.shields.io/badge/Instagram-mateuss.pcosta-E4405F?logo=instagram)](https://www.instagram.com/mateuss.pcosta/)
-[![YouTube](https://img.shields.io/badge/YouTube-MateusPess%C3%B4aCosta-FF0000?logo=youtube)](https://www.youtube.com/@MateusPess%C3%B4aCosta)
