@@ -20,6 +20,7 @@ O NutriConecta facilita todo o ciclo de uma doação: desde o cadastro dos alime
 
 ### Administrador
 - Gerenciar usuários (doadores, instituições)
+- Gerenciar endereços por usuário (listar, cadastrar, editar, excluir)
 - Visualizar todas as doações e solicitações
 
 ## Fluxo de doação
@@ -73,10 +74,12 @@ cp .env.example .env
 Edite o `.env`:
 
 ```env
-DB_URL=jdbc:mysql://localhost:3306/dbnutriconecta?useSSL=false&serverTimezone=UTC
+DB_URL=jdbc:mysql://localhost:3306/dbnutriconecta?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
 DB_USERNAME=seu_usuario
 DB_PASSWORD=sua_senha
 ```
+
+> O banco de dados e as tabelas são criados automaticamente na primeira execução.
 
 ### 3. Rode a aplicação
 
@@ -109,7 +112,14 @@ src/
 │   │   └── service/         # Regras de negócio
 │   └── resources/
 │       ├── static/          # CSS, JS e imagens
-│       └── templates/       # Páginas HTML (Thymeleaf)
+│       └── templates/
+│           ├── fragments/   # Componentes reutilizáveis (menu, footer, doações)
+│           ├── doacoes/     # Telas de doações
+│           ├── enderecos/   # Telas de endereços
+│           ├── solicitacoes/# Telas de solicitações
+│           ├── retiradas/   # Telas de retiradas
+│           ├── usuarios/    # Telas de usuários
+│           └── index.html   # Página inicial
 └── test/
 ```
 
@@ -120,3 +130,10 @@ src/
 | `DB_URL`      | URL de conexão com o MySQL       |
 | `DB_USERNAME` | Usuário do banco de dados        |
 | `DB_PASSWORD` | Senha do banco de dados          |
+
+## Contato
+
+[![GitHub](https://img.shields.io/badge/GitHub-mateus--pcosta-181717?logo=github)](https://github.com/mateus-pcosta)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-mateuspessoacosta-0A66C2?logo=linkedin)](https://www.linkedin.com/in/mateuspessoacosta/)
+[![Instagram](https://img.shields.io/badge/Instagram-mateuss.pcosta-E4405F?logo=instagram)](https://www.instagram.com/mateuss.pcosta/)
+[![YouTube](https://img.shields.io/badge/YouTube-MateusPess%C3%B4aCosta-FF0000?logo=youtube)](https://www.youtube.com/@MateusPess%C3%B4aCosta)
